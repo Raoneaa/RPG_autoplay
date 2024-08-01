@@ -103,8 +103,8 @@ Champion* destroyChampionList(Champion *head) {
 
 void fight(Champion** player1List, Champion** player2List){
     // make structs equal to the lists
-    Champion* player1= player1List;
-    Champion * player2 = player2List;
+    Champion *player1= *player1List;
+    Champion *player2 = *player2List;
 
      if(player1->level > player2->level){
 

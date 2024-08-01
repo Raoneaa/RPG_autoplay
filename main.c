@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     }
     int roundNum = 1;
     while (player1 != NULL && player2 != NULL) {
-        printf("\n--------- Round % --------\n", roundNum);
+        printf("\n--------- Round %d --------\n", roundNum);
         printf("\nPlayer 1's Hand: ");
         printChampionList(player1);
         printf("\nPlayer 2's Hand: ");
@@ -43,16 +43,17 @@ int main(int argc, char* argv[]) {
 
         player1 = removeChampion(player1);
         player2 = removeChampion(player2);
+        ++roundNum;
     }
     // determine who was the winner and print it out
-    if(player1 == NULL){
+    if(player1 == NULL && player2 != NULL){
         printf("Player 2 Wins!!\n");
     }
-    else if (player2 == NULL){
+    else if (player2 == NULL && player1 != NULL){
         printf("Player 1 Wins!!\n");
     }
     else{
-        printf("It was a Tie!!\n");
+        printf("\nIt was a Tie!!\n");
     }
 
 
