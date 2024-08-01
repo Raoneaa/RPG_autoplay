@@ -4,10 +4,15 @@
 
 #ifndef PROJECT3_CHAMPION_H
 #define PROJECT3_CHAMPION_H
-typedef enum {M,F,S,T}ChampionRole;
+typedef enum {
+    MAGE = 'M',
+    FIGHTER ='F',
+    SUPPORT ='S',
+    TANK = 'T'
+}ChampionRole;
 
 typedef struct Champion{
-    char role;
+    ChampionRole role;
     int level;
     struct Champion* next;
 }Champion;

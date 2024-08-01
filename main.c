@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
         printChampionList(player2);
     removeChampion(player2);
     removeChampion(player1);
+    printf("\n");
 
 
     printf("after removing head\n");
@@ -49,10 +50,6 @@ int main(int argc, char* argv[]) {
     printChampionList(player2);
     destroyChampionList(player1);
     destroyChampionList(player2);
-
-    printf("after freeing\n");
-    printChampionList(player1);
-    printChampionList(player2);
 
     return 0;
 }
