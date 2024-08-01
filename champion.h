@@ -26,7 +26,8 @@ Champion* buildChampionList(int n); //creates a lis tof champions with linked li
 void printChampionList(Champion *head); // traverse linked list for each player than print it out
 Champion* removeChampion(Champion *head); // removed the head of the linked list then returns new head
 Champion* destroyChampionList(Champion *head); // remove all the champions from linked list and returns null
-
+void fight(Champion**,Champion**); // takes pointer to both champions list and comapres the heads of each to
+// determine winner of the round
 
 
 #endif //PROJECT3_CHAMPION_H
