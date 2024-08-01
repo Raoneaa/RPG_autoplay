@@ -41,16 +41,16 @@ Champion* buildChampionList(int n) {
         int role = rand() % 4;
         switch (role) {
             case 0:
-                champ->role = 'M'; // Ensure consistency with char type
+                champ->role = MAGE; // Ensure consistency with char type
                 break;
             case 1:
-                champ->role = 'F';
+                champ->role = FIGHTER;
                 break;
             case 2:
-                champ->role = 'S';
+                champ->role = SUPPORT;
                 break;
             case 3:
-                champ->role = 'T';
+                champ->role = TANK;
                 break;
             default:
                 printf("Random number generation error, iteration %d\n", i);
@@ -71,6 +71,8 @@ Champion* buildChampionList(int n) {
             case 'T':
                 champ->level = rand() % 8 + 1;
                 break;
+            default:
+                break;
         }
         head = addChampion(head, champ);
     }
@@ -78,17 +80,24 @@ Champion* buildChampionList(int n) {
 }
 
 // Traverse linked list for each player and print it out
-void printChampionList(Champion *head) {
-    if(head == NULL){
-        printf("head is NULL, Cannot print list");
+// void printChampionList(Champion *head) {
+//     if(head == NULL){
+//         printf("head is NULL, Cannot print list");
+//         return;
+//     }
+//     Champion* temp = head;
+//     while (temp != NULL) {
+//         printf("%c%d ", temp->role, temp->level);
+//         temp = temp->next;
+//     }
+//     printf("\n");
+// }
+void printChampionList(Champion * head) {
+    if(head == NULL) {
         return;
     }
-    Champion *temp = head;
-    while (temp != NULL) {
-        printf("%c%d ", temp->role, temp->level);
-        temp = temp->next;
-    }
-    printf("\n");
+    printf("%c %d\t",head->role,head->level);
+    printChampionList(head->next);
 }
 
 // Remove the head of the linked list and return the new head
