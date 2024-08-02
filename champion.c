@@ -101,12 +101,129 @@ Champion* destroyChampionList(Champion *head) {
     return destroyChampionList(next);
 }
 
-void fight(Champion** player1List, Champion** player2List){
+void fight(Champion** player1List, Champion** player2List) {
     // make structs equal to the lists
-    Champion *player1= *player1List;
+    Champion *player1 = *player1List;
     Champion *player2 = *player2List;
+// if both have the same roles
+    if (player1->role == player2->role) {
+        switch (player1->role) {
+            case MAGE:
+                // higher level wins and gains champion, if tie nothing
+                if (player1->level > player2->level) {
+                    addChampion(player1, createChampion());
+                } else if (player1->level < player2->level) {
+                    addChampion(player2, createChampion());
+                }
+                break;
+            case FIGHTER:
+                // both win a champion no matter what
+                addChampion(player1, createChampion());
+                addChampion(player2, createChampion());
+                break;
+            case SUPPORT:
+                //both loose one champion
+                removeChampion(player1);
+                removeChampion(player2);
+                break;
+            case TANK:
+                // nothing happens
+                break;
+        }
+    }
+        //if player 1 has a higher level
+    else if (player1->level > player2->level) {
+        //determine the outcome on each of the player 1 champion role
+        switch (player1->role) {
+            case MAGE:
+                // check for what role the losing player was to determine fate
+                switch (player2->role) {
+                    //player 2 looses as mage
+                    case MAGE:
+                        //remove champion for loosing
+                        removeChampion(player2);
+                        break;
+                    case FIGHTER:
+                        //loose with no penalty
+                        break;
+                    case SUPPORT:
+                    case TANK:
+                        //remove for loosing as support or tank
+                        removeChampion(player2);
+                        break;
+                }
+                //mage wins gains new champion
+                addChampion(player1, createChampion());
 
-     if(player1->level > player2->level){
+                break;
+            case FIGHTER:
+                if (player2->role == SUPPORT) {
+                    //remove for loosing as support
+                    removeChampion(player2);
+                }
+                //just loose normal if player 2 is tank
+                // nothing happens
+                break;
+            case SUPPORT:
+                if (player2->role == TANK) {
+                    //player 2 wins for being tank
+                    addChampion(player2, createChampion());
+                }
+                //Nothing happens
+                break;
+            case TANK:
+                if(player2->role == SUPPORT){
+                    addChampion(player1,createChampion());
+                }
+                // nothing happens
+                break;
+        }
+    }
+    // if player 2 wins
+    else if (player2->level > player1->level) {
+        //determine the outcome on each of the player 1 champion role
+        switch (player1->role) {
+            case MAGE:
+                // check for what role the losing player was to determine fate
+                switch (player2->role) {
+                    //player 2 looses as mage
+                    case MAGE:
+                        //remove champion for loosing
+                        removeChampion(player1);
+                        break;
+                    case FIGHTER:
+                        //loose with no penalty
+                        break;
+                    case SUPPORT:
+                    case TANK:
+                        //remove for loosing as support or tank
+                        removeChampion(player1);
+                        break;
+                }
+                //mage wins gains new champion
+                addChampion(player2, createChampion());
 
-     }
+                break;
+            case FIGHTER:
+                if (player1->role == SUPPORT) {
+                    //remove for loosing as support
+                    removeChampion(player1);
+                }
+                //just loose normal if player 2 is tank
+                // nothing happens
+                break;
+            case SUPPORT:
+                if (player1->role == TANK) {
+                    //player 2 wins for being tank
+                    addChampion(player1, createChampion());
+                }
+                //Nothing happens
+                break;
+            case TANK:
+                if(player2->role == SUPPORT){
+                    addChampion(player1,createChampion());
+                }
+                break;
+        }
+    }
 }

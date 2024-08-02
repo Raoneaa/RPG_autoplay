@@ -47,10 +47,10 @@ int main(int argc, char* argv[]) {
     }
     // determine who was the winner and print it out
     if(player1 == NULL && player2 != NULL){
-        printf("Player 2 Wins!!\n");
+        printf("\nPlayer 2 Wins!!\n");
     }
     else if (player2 == NULL && player1 != NULL){
-        printf("Player 1 Wins!!\n");
+        printf("\nPlayer 1 Wins!!\n");
     }
     else{
         printf("\nIt was a Tie!!\n");
