@@ -81,15 +81,27 @@ int main(int argc, char* argv[]) {
         ++roundNum;
     }
     // determine who was the winner and print it out
+    printf("\n---------- Game Over!! ---------\n");
     if(player1 == NULL && player2 != NULL){
+        printf("\nPlayer 1 ending champion list: ");
+        printf("\nPlayer 2 ending champion list: ");
+        printChampionList(player2);
         printf("\nPlayer 2 Wins!!\n");
     }
     else if (player2 == NULL && player1 != NULL){
+        printf("\nPlayer 1 ending champion list: ");
+        printChampionList(player1);
+        printf("\nPlayer 2 ending champion list: ");
         printf("\nPlayer 1 Wins!!\n");
     }
     else{
+        printf("\nPlayer 1 ending champion list: ");
+        printf("\nPlayer 2 ending champion list: ");
         printf("\nIt was a Tie!!\n");
     }
+
+    printChampionList(player1);
+    printChampionList(player2);
 
 
 // clear the champions list and it memory
