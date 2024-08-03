@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "champion.h"
 
 int main(int argc, char* argv[]) {
+    char player1Role[10] = "BlankSpace";
+    char player2Role[10] = "BlankSpace";
 
     //if nothing is input then throw error message
     if (argc != 2) {
@@ -32,11 +35,42 @@ int main(int argc, char* argv[]) {
     }
     int roundNum = 1;
     while (player1 != NULL && player2 != NULL) {
+        switch (player1->role) {
+            case MAGE:
+                strcpy(player1Role,"MAGE");
+                break;
+            case FIGHTER:
+                strcpy(player1Role,"FIGHTER");
+                break;
+            case SUPPORT:
+                strcpy(player1Role,"SUPPORT");
+                break;
+            case TANK:
+                strcpy(player1Role,"TANK");
+                break;
+
+        }
+        switch (player2->role) {
+            case MAGE:
+                strcpy(player2Role,"MAGE");
+                break;
+            case FIGHTER:
+                strcpy(player2Role,"FIGHTER");
+                break;
+            case SUPPORT:
+                strcpy(player2Role,"SUPPORT");
+                break;
+            case TANK:
+                strcpy(player2Role,"TANK");
+                break;
+
+        }
         printf("\n--------- Round %d --------\n", roundNum);
         printf("\nPlayer 1's Hand: ");
         printChampionList(player1);
         printf("\nPlayer 2's Hand: ");
         printChampionList(player2);
+        printf("\nPlayer 1 is a %s and Player 2 is a %s\n",player1Role,player2Role);
 
         // send a pointer of the head so it doesnt need a return function
         fight(&player1,&player2);
