@@ -293,7 +293,6 @@ void fight(Champion** player1List, Champion** player2List) {
                     printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 }
                 // Nothing happens
-                printf("Nothing happens\n");
                 break;
         }
     }
