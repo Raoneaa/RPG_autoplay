@@ -82,7 +82,7 @@ void printChampionList(Champion * head) {
 
 // Remove the head of the linked list and return the new head
 Champion* removeChampion(Champion *head) {
-    if (head == NULL) {
+    if (head == NULL || head ->next == NULL) {
         return NULL;
     }
 
@@ -93,7 +93,7 @@ Champion* removeChampion(Champion *head) {
 
 // Remove all the champions from the linked list and return null
 Champion* destroyChampionList(Champion *head) {
-    if (head == NULL) {
+    if (head == NULL || head->next == NULL) {
         return NULL;
     }
     Champion *next = head->next;

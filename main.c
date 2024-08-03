@@ -8,12 +8,13 @@ int main(int argc, char* argv[]) {
     char player1Role[10] = "BlankSpace";
     char player2Role[10] = "BlankSpace";
 
-    //if nothing is input then throw error message
-    if (argc != 2) {
-        printf("Please input number of champions next time\n");
-        exit(-1);
-    }
-    int numChampions = atoi(argv[1]); // convert whatever is in the command line to int
+    // //if nothing is input then throw error message
+    // if (argc != 2) {
+    //     printf("Please input number of champions next time\n");
+    //     exit(-1);
+    // }
+    // int numChampions = atoi(argv[1]); // convert whatever is in the command line to int
+    int numChampions = 4;
 
     if (numChampions <= 0) {
         printf("You cannot play a game with 0 champions, input more than 0 champions next time\n");
