@@ -1,5 +1,5 @@
 myprogram: main.o champion.o
-	gcc main.o myfunctions.o -o myprogram
+	gcc main.o champion.o -o myprogram
 main.o: main.c champion.h
 	gcc -c main.c -o main.o
 champion.o: champion.c champion.h
