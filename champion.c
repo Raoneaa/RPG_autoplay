@@ -142,145 +142,158 @@ void fight(Champion** player1List, Champion** player2List) {
     if (player1->role == player2->role) {
         switch (player1->role) {
             case MAGE:
-                // higher level wins and gains champion, if tie nothing
+                // Higher level wins and gains champion, if tie nothing
                 if (player1->level > player2->level) {
                     addChampion(player1, createChampion());
-                    printf("Player %d is %s and gains new champion\n",1,player1Role);
+                    printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 } else if (player1->level < player2->level) {
                     addChampion(player2, createChampion());
-                    printf("Player %d is a %s and gains new champion\n",2,player2Role);
+                    printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 }
                 break;
             case FIGHTER:
-                // both win a champion no matter what
+                // Both win a champion no matter what
                 addChampion(player1, createChampion());
-                printf("Player %d is a %s and gains new champion\n",1,player1Role);
+                printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 addChampion(player2, createChampion());
-                printf("Player %d is a %s and gains new champion\n",2,player2Role);
+                printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 break;
             case SUPPORT:
-                //both loose one champion
+                // Both lose one champion
                 removeChampion(player1);
+                printf("Player 1 is a %s and loses a champion\n", player1Role);
                 removeChampion(player2);
+                printf("Player 2 is a %s and loses a champion\n", player2Role);
                 break;
             case TANK:
-                // nothing happens
+                // Nothing happens
+                printf("Both players are %s, and nothing happens\n", player1Role);
                 break;
         }
     }
-        //if player 1 has a higher level
+        // If player 1 has a higher level
     else if (player1->level > player2->level) {
-        //determine the outcome on each of the player 1 champion role
+        // Determine the outcome based on player 1's champion role
         switch (player1->role) {
             case MAGE:
-                // check for what role the losing player was to determine fate
+                // Check for what role the losing player was to determine fate
                 switch (player2->role) {
-                    //player 2 looses as mage
+                    // Player 2 loses as a mage
                     case MAGE:
-                        //remove champion for loosing
+                        // Remove champion for losing
                         removeChampion(player2);
+                        printf("Player 2 is a %s and loses a champion\n", player2Role);
                         break;
                     case FIGHTER:
-                        //loose with no penalty
+                        // Lose with no penalty
+                        printf("Player 2 is a %s and loses with no penalty\n", player2Role);
                         break;
                     case SUPPORT:
                     case TANK:
-                        //remove for loosing as support or tank
+                        // Remove for losing as support or tank
                         removeChampion(player2);
+                        printf("Player 2 is a %s and loses a champion\n", player2Role);
                         break;
                 }
-                //mage wins gains new champion
+                // Mage wins gains a new champion
                 addChampion(player1, createChampion());
-                printf("Player %d is a %s and gains new champion\n",1,player2Role);
-
+                printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 break;
             case FIGHTER:
                 if (player2->role == SUPPORT) {
-                    //remove for loosing as support
+                    // Remove for losing as support
                     removeChampion(player2);
+                    printf("Player 2 is a %s and loses a champion\n", player2Role);
                 }
-                //just loose normal if player 2 is tank
-                // nothing happens
+                // Just lose normally if player 2 is tank
+                printf("Player 2 is a %s and loses with no penalty\n", player2Role);
                 break;
             case SUPPORT:
                 if (player2->role == TANK) {
-                    //player 2 wins for being tank
+                    // Player 2 wins for being tank
                     addChampion(player1, createChampion());
-                    printf("Player %d is a %s and gains new champion\n",1,player1Role);
+                    printf("Player 1 is a %s and gains a new champion\n", player1Role);
 
-                    addChampion(player2,createChampion());
-                    printf("Player %d is a %s and gains new champion\n",2,player2Role);
+                    addChampion(player2, createChampion());
+                    printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 }
-                //Nothing happens
+                // Nothing happens
+                printf("Nothing happens\n");
                 break;
             case TANK:
-                if(player2->role == MAGE){
-                    addChampion(player2,createChampion());
-                    printf("Player %d is a %s and gains new champion\n",2,player2Role);
+                if (player2->role == MAGE) {
+                    addChampion(player2, createChampion());
+                    printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 }
-                if(player2->role == SUPPORT){
-                    addChampion(player1,createChampion());
-                    printf("Player %d is a %s and gains new champion\n",1,player1Role);
+                if (player2->role == SUPPORT) {
+                    addChampion(player1, createChampion());
+                    printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 }
-                // nothing happens
+                // Nothing happens
+                printf("Nothing happens\n");
                 break;
         }
     }
-    // if player 2 wins
+        // If player 2 wins
     else if (player2->level > player1->level) {
-        //determine the outcome on each of the player 1 champion role
-        switch (player1->role) {
+        // Determine the outcome based on player 2's champion role
+        switch (player2->role) {
             case MAGE:
-                // check for what role the losing player was to determine fate
-                switch (player2->role) {
-                    //player 2 looses as mage
+                // Check for what role the losing player was to determine fate
+                switch (player1->role) {
+                    // Player 1 loses as a mage
                     case MAGE:
-                        //remove champion for loosing
+                        // Remove champion for losing
                         removeChampion(player1);
+                        printf("Player 1 is a %s and loses a champion\n", player1Role);
                         break;
                     case FIGHTER:
-                        //loose with no penalty
+                        // Lose with no penalty
+                        printf("Player 1 is a %s and loses with no penalty\n", player1Role);
                         break;
                     case SUPPORT:
                     case TANK:
-                        //remove for loosing as support or tank
+                        // Remove for losing as support or tank
                         removeChampion(player1);
+                        printf("Player 1 is a %s and loses a champion\n", player1Role);
                         break;
                 }
-                //mage wins gains new champion
+                // Mage wins gains a new champion
                 addChampion(player2, createChampion());
-                printf("Player %d is a %s and gains new champion\n",2,player2Role);
-
+                printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 break;
             case FIGHTER:
-                if (player2->role == SUPPORT) {
-                    //remove for loosing as support
+                if (player1->role == SUPPORT) {
+                    // Remove for losing as support
                     removeChampion(player1);
-                    // add to player 2 for winning as support
-                    addChampion(player2,createChampion());
-                    printf("Player %d is a %s and gains new champion\n",2,player2Role);
+                    printf("Player 1 is a %s and loses a champion\n", player1Role);
+                    // Add to player 2 for winning as support
+                    addChampion(player2, createChampion());
+                    printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 }
-                //just loose normal if player 2 is tank
-                // nothing happens
+                // Just lose normally if player 1 is tank
+                printf("Player 1 is a %s and loses with no penalty\n", player1Role);
                 break;
             case SUPPORT:
-                if (player2->role == TANK) {
-                    //player 2 wins for being tank
+                if (player1->role == TANK) {
+                    // Player 2 wins for being tank
                     addChampion(player1, createChampion());
-                    printf("Player %d is a %s and gains new champion\n",1,player1Role);
+                    printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 }
-                //Nothing happens
+                // Nothing happens
+                printf("Nothing happens\n");
                 break;
             case TANK:
-                if(player2->role == MAGE){
-                    addChampion(player2,createChampion());
-                    printf("Player %d is a %s and gains new champion\n",2,player2Role);
+                if (player1->role == MAGE) {
+                    addChampion(player2, createChampion());
+                    printf("Player 2 is a %s and gains a new champion\n", player2Role);
                 }
-                if(player2->role == SUPPORT){
-                    addChampion(player1,createChampion());
-                    printf("Player %d is a %s and gains new champion\n",1,player1Role);
+                if (player1->role == SUPPORT) {
+                    addChampion(player1, createChampion());
+                    printf("Player 1 is a %s and gains a new champion\n", player1Role);
                 }
-
+                // Nothing happens
+                printf("Nothing happens\n");
                 break;
         }
     }

@@ -100,8 +100,6 @@ int main(int argc, char* argv[]) {
         printf("\nIt was a Tie!!\n");
     }
 
-    printChampionList(player1);
-    printChampionList(player2);
 
 
 // clear the champions list and it memory
